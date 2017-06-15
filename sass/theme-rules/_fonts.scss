@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'Market Web';
+  src: url('fonts/market.eot'); /* IE9 Compat Modes */
+  src: url('fonts/market.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/market.woff') format('woff'), /* Modern Browsers */
+       url('fonts/market.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/market.svg#1ab3d40215da71033c2131dc969287d9') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  400;
+}
+
+
+// Define sizes here, use them later on
+// -----------------------------------------------------------------
+$f-wrist: 11px;
+$f-palm: 12px;
+$f-lap: 14px;
+$f-desk: 16px;
+$f-wall: 18px;
+$f-cinema: 20px;
+
+
+// Font sizes
+// -----------------------------------------------------------------
+$text-wrist: $f-wrist;
+$text-palm: $f-palm;
+$text-lap: $f-lap;
+$text-desk: $f-desk;
+$text-wall: $f-wall;
+$text-cinema: $f-cinema;
+
+
+// Standard site sizes
+// -----------------------------------------------------------------
+$base-size: $text-desk;
+$body-size: $text-desk;
+
+// Calculate the line-height according to the golden ratio
+// http://www.pearsonified.com/typography/
+// $line-height: 28px;
+
+// Remove units
+// -----------------------------------------------------------------
+@function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+}
+
+// Or let SASS calculate it for you using the max-width & font-size
+// http://www.pearsonified.com/2011/12/golden-ratio-typography.php
+$golden-ratio: 1.61803398875;
+$line-height: $golden-ratio - (1 - ((strip-units($max-width)) / (((strip-units($body-size)) * $golden-ratio) * ((strip-units($body-size)) * $golden-ratio)))) * (1 / (2 * $golden-ratio));
+
+
+
+
+// Define font names here, use them later on
+// -----------------------------------------------------------------
+$websafe: Arial, Verdana, sans-serif;
+$fontface: "Market Web", Arial, Verdana, sans-serif;
+$serif: Georgia, "Times new roman", serif;
+
+
+// Font families
+// -----------------------------------------------------------------
+$body-font: $websafe;                           // Websafe font family
+$special-font: $fontface;      // Special font, for example a google font. Use google fonts locally for a better pagespeed score
+$sec-font: $serif;

@@ -1,0 +1,74 @@
+.gallery-item {
+    width: 100%;
+    margin-bottom: $margin;
+    float: left;
+    
+    @include min-screen($palm) {
+    }
+    
+    @include min-screen($lap) {
+        width: 47%;
+        margin: $margin-small;
+        display: inline-block;
+        vertical-align: top;
+        float: none;
+    }
+    
+    @include min-screen($desk) {
+    }
+    
+    @include min-screen($wall) {
+    }
+    
+    @include min-screen($cinema) {
+    }
+}
+
+.gallery-photo {
+
+    img {
+        width: 100%;
+        height: auto;
+        margin-bottom: $margin-small;
+        padding: 10px;
+        float: left;
+        border: 1px solid #eee;
+        
+        @include min-screen($palm) {
+        }
+        
+        @include min-screen($lap) {
+        }
+        
+        @include min-screen($desk) {
+        }
+        
+        @include min-screen($wall) {
+        }
+        
+        @include min-screen($cinema) {
+        }
+    }
+}
+
+.gallery-caption {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: $body-size;
+    
+    @include min-screen($palm) {
+    }
+    
+    @include min-screen($lap) {
+    }
+    
+    @include min-screen($desk) {
+    }
+    
+    @include min-screen($wall) {
+    }
+    
+    @include min-screen($cinema) {
+    }
+}

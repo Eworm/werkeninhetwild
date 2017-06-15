@@ -1,0 +1,106 @@
+// Underline hover
+%hover-underline {
+    text-decoration: none;
+    
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
+// Images used in posts
+%postimage {
+    width: 100%;
+    height: auto;
+    margin: $margin-skinny 0;
+    display: block;
+    border-radius: 0;
+    box-shadow: $default-box-shadow;
+}
+
+// Arrow for navfeedback
+%navfeedback {
+    width: 0;
+    height: 0;
+    content: '';
+    position: absolute;
+    border: 8px solid transparent;
+}
+
+// Remove styling of lists
+%remove-style {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+// Row in a form
+%formrow {
+    width: 100%;
+    margin-bottom: $margin/2;
+    float: left;
+    clear: both;
+    
+    &:last-child {
+        margin-bottom: 0;
+    }
+    
+    &.error {
+        margin-bottom: 0;
+        padding: $gutter-skinny;
+        border-radius: $default-border-radius;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        box-shadow: $default-box-shadow;
+        background: $alert;
+        color: #fff;
+        
+        @include min-screen($lap) {
+            width: 50%;
+        }
+    }
+    
+    .textarea + div.error {
+        width: 100%;
+    }
+}
+
+// Summary
+%post {
+    width: 100%;
+    margin-bottom: $margin;
+    float: left;
+    
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    ul {
+        padding-left: 40px;
+    }
+
+    .post-thumb {
+        display: none;
+
+        @include min-screen($lap) {
+            width: 87px;
+            height: 68px;
+            margin-right: $gutter-skinny;
+            overflow: hidden;
+            float: left;
+            display: block;
+            position: relative;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: 0;
+            }
+        }
+    }
+}

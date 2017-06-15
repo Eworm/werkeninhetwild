@@ -1,0 +1,191 @@
+// Calculate the fluid gutters in percentages
+// -----------------------------------------------------------------
+@function gutter-width() {
+    @return 100% / ($max-width / $gutter);
+}
+
+
+// Calculate the grid widths
+// -----------------------------------------------------------------
+@mixin col-width($i, $value: true) {
+
+    // The standard width is optional
+    @if $value == true {
+        width: 100% / ($max-width / (((($max-width - (($nr-of-columns - 1) * $gutter)) / $nr-of-columns) * $i) + (($i - 1) * $gutter)));
+    }
+    
+    // But there's alway a flexbox width (not sure if this is necessary)
+    @include flex(0 0 (100% / ($max-width / (((($max-width - (($nr-of-columns - 1) * $gutter)) / $nr-of-columns) * $i) + (($i - 1) * $gutter)))));
+
+    // And there's also a flexbox calc width. Browser support for flexbox & calc is almost the same.
+    @include flex(0 0 calc(#{100% / ($max-width / (((($max-width / $nr-of-columns) * $i))))} - #{$gutter}));
+
+}
+
+
+// Every column should have a row as it's parent
+// -----------------------------------------------------------------
+.row {
+    
+    .no-flexboxlegacy & {
+        // width: 100%;
+        // margin: 0;
+    }
+    
+    width: calc(100% + #{$gutter}); // For flexbox
+    margin: 0 -#{($gutter / 2)}; // For flexbox
+    float: left;
+    @include flexbox;
+    @include flex-flow(row wrap);
+    @include align-items(flex-start);
+    @include justify-content(space-around);
+    
+    .no-flexbox {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .no-calcss & {
+        width: 100%;
+        margin: 0;
+    }
+    
+
+    > .col {
+        width: 100%;
+        float: left;
+        @include flex-direction(column);
+
+        box-shadow: inset rgba(#000, .4) 0 0 1px;
+
+        @include min-screen($lap) {
+            // Flexbox browsers don't need the gutter
+            // The width of the flexbox columns is calculated minus the gutters
+            // They're positioned using justify-content: space between
+            .no-flexbox & {
+                margin-right: gutter-width(); // This is the gutter
+            }
+            
+            .no-flexboxlegacy & {
+                // margin-right: gutter-width(); // This is the gutter
+            }
+            
+            @include flex(1 1 0);
+        }
+
+        &:last-child {
+
+            // Flexbox browsers don't need this, but we'll keep it anyway
+            @include min-screen($lap) {
+                margin-right: 0;
+            }
+        }
+    }
+
+    // All screen widths
+    // -----------------------------------------------------------------
+    @for $i from 1 through $nr-of-columns {
+
+        @include min-screen($lap) {
+
+            > .col-#{$i} {
+                @include col-width($i, true);
+            }
+        }
+    }
+
+
+    // Palm to lap
+    // Non-flexbox browsers will use the standard col widths for this small screen to prevent columns becoming too small
+    // You can remove this when unused to minimize the css
+    // -----------------------------------------------------------------
+    @for $i from 1 through $nr-of-columns {
+
+        > .col-palm-#{$i} {
+
+            @include screen($palm, $lap) {
+                @include col-width($i, false);
+            }
+        }
+    }
+
+
+    // Lap to desk
+    // You can remove this when unused to minimize the css
+    // -----------------------------------------------------------------
+    @for $i from 1 through $nr-of-columns {
+
+        > .col-lap-#{$i} {
+
+            @include screen($lap, $desk) {
+                @include col-width($i, true);
+            }
+        }
+    }
+
+
+    // Desk to wall
+    // You can remove this when unused to minimize the css
+    // -----------------------------------------------------------------
+    @for $i from 1 through $nr-of-columns {
+
+        > .col-desk-#{$i} {
+
+            @include screen($desk, $wall) {
+                @include col-width($i, true);
+            }
+        }
+    }
+
+
+    // Wall to cinema
+    // You can remove this when unused to minimize the css
+    // -----------------------------------------------------------------
+    @for $i from 1 through $nr-of-columns {
+
+        .col-wall-#{$i} {
+
+            @include screen($wall, $cinema) {
+                @include col-width($i, true);
+            }
+        }
+    }
+
+
+    // Offset
+    // -----------------------------------------------------------------
+    @for $i from 1 through $nr-of-columns {
+
+        > .col-push-#{$i} {
+
+            @include min-screen($lap) {
+                // margin-left: 100% / ($max-width / (((($max-width - (($nr-of-columns + 1) * $gutter)) / $nr-of-columns) * $i) + (($i + 1) * $gutter)));
+                // margin-left: calc(#{100% / ($max-width / (((($max-width / $nr-of-columns) * $i))))} + #{$gutter});
+                margin-left: 100% / ($max-width / (((($max-width / $nr-of-columns) * $i))));
+                
+                .no-calcss & {
+                    margin-left: 100% / ($max-width / (((($max-width - (($nr-of-columns + 1) * $gutter)) / $nr-of-columns) * $i) + (($i + 1) * $gutter)));
+                }
+                
+                .no-flexbox {
+                    margin-left: 100% / ($max-width / (((($max-width - (($nr-of-columns + 1) * $gutter)) / $nr-of-columns) * $i) + (($i + 1) * $gutter)));
+                }
+                
+                .no-flexboxlegacy & {
+                    // margin-left: 100% / ($max-width / (((($max-width - (($nr-of-columns + 1) * $gutter)) / $nr-of-columns) * $i) + (($i + 1) * $gutter)));
+                }
+            }
+        }
+    }
+}
+
+
+// Extra or no margins
+// -----------------------------------------------------------------
+.no-margin {
+    margin-right: 0;
+}
+
+.plus-margin {
+    margin-right: gutter-width();
+}

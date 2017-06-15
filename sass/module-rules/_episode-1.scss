@@ -1,0 +1,34 @@
+.episode-1 {
+
+    #header {
+        background-image:url("images/episodes/episode-1-header-palm.jpg");
+        
+        @include min-screen($lap) {
+            background-image:url("images/episodes/episode-1-header-lap.jpg");
+        }
+        
+        @include min-screen($desk) {
+            background-image:url("images/episodes/episode-1-header-desk.jpg");
+        }
+    
+        .episode-title {
+            color:#fff;
+        }
+    }
+}
+
+.episodes-1 {
+    background-image:url("images/episodes/episode-1-header-palm.jpg");
+    
+    @include min-screen($lap) {
+        background-image:url("images/episodes/episode-1-header-lap.jpg");
+    }
+    
+    @include min-screen($desk) {
+        background-image:url("images/episodes/episode-1-header-desk.jpg");
+    }
+    
+    > span {
+        color: #fff;
+    }
+}

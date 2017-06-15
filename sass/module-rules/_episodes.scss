@@ -1,0 +1,80 @@
+.episodes {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.episodes-single {
+    width: 100%;
+    margin-bottom: $margin;
+    padding: 40%;
+    display: block;
+    position: relative;
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    text-decoration: underline;
+    
+    @include min-screen($palm) {
+        padding: 35%;
+    }
+    
+    @include min-screen($lap) {
+        padding: 27%;
+    }
+    
+    @include min-screen($desk) {
+    }
+    
+    @include min-screen($wall) {
+    }
+    
+    @include min-screen($cinema) {
+        padding: 22%;
+    }
+    
+    > span {
+        margin: 0;
+        position: absolute;
+        right: $margin;
+        left: $margin;
+        bottom: $margin;
+        line-height: 1em;
+        font-family: $special-font;
+        font-size: $text-cinema * 2;
+        font-weight: normal;
+        text-shadow: rgba(#000, 1) 0 2px 0;
+        text-align: center;
+        text-decoration: underline;
+        
+        @include min-screen($palm) {
+        }
+        
+        @include min-screen($lap) {
+            right: $margin-large;
+            left: $margin-large;
+            bottom: $margin-large;
+            font-size: $text-cinema * 2;
+        }
+        
+        @include min-screen($desk) {
+            font-size: $text-cinema * 3;
+        }
+        
+        @include min-screen($wall) {
+            font-size: $text-cinema * 4;
+        }
+        
+        @include min-screen($cinema) {
+            font-size: $text-cinema * 5;
+        }
+    }
+    
+    &:hover, &:focus {
+        
+        > span {
+            text-decoration: none;
+        }
+    }
+}
