@@ -1,15 +1,7 @@
 .episode-7 {
 
     #header {
-        background-image:url("images/episodes/episode-7-header-palm.jpg");
-
-        @include min-screen($lap) {
-            background-image:url("images/episodes/episode-7-header-lap.jpg");
-        }
-
-        @include min-screen($desk) {
-            background-image:url("images/episodes/episode-7-header-desk.jpg");
-        }
+        background-image:url("images/episodes/episode-7-header-desk.jpg");
 
         .episode-title {
             color:#fff;
@@ -18,15 +10,7 @@
 }
 
 .episodes-7 {
-    background-image:url("images/episodes/episode-7-header-palm.jpg");
-
-    @include min-screen($lap) {
-        background-image:url("images/episodes/episode-7-header-lap.jpg");
-    }
-
-    @include min-screen($desk) {
-        background-image:url("images/episodes/episode-7-header-desk.jpg");
-    }
+    background-image:url("images/episodes/episode-7-header-desk.jpg");
 
     > span {
         color: #fff;

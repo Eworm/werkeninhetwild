@@ -8,6 +8,7 @@
 
 // Theme rules (variables)
 // -----------------------------------------------------------------
+@import 'import-now';                       // Neat path is defined in the Gulp file (line 45)
 @import 'theme-rules/grid-variables';
 @import 'theme-rules/colors';
 @import 'theme-rules/defaults';
@@ -20,7 +21,6 @@
 
 // Sass functions, extendables & mixins.
 // -----------------------------------------------------------------
-@import 'compass/css3';
 @import 'sass-extras/functions';
 @import 'sass-extras/extendables';
 @import 'sass-extras/mixins';
@@ -29,7 +29,7 @@
 
 // Base rules. Normalize and other basic element styles.
 // -----------------------------------------------------------------
-@import 'normalize'; // Normalize is being imported via Bower
+// @import 'normalize'; // Normalize is being imported via Bower
 @import 'base-rules/base';
 @import 'base-rules/headers';
 

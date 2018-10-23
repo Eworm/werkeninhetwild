@@ -8,9 +8,6 @@
     }
 }
 
-.main-content-header {
-}
-
 // The content
 // -----------------------------------------------------------------
 .main-content-body {
@@ -18,11 +15,11 @@
     p,
     ul {
         margin: $margin/2 0;
-        
+
         @include min-screen($lap) {
             margin: $margin 0;
         }
-        
+
         &:last-child {
             margin-bottom: 0;
         }
