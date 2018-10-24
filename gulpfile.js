@@ -60,7 +60,7 @@ gulp.task('javascript', function() {
 
     gulp.src([
             'node_modules/blazy/blazy.js',
-            'js-src/base/functions.js'
+            'js-src/functions.js'
         ])
         .pipe(plugins.plumber({
             errorHandler: plugins.notify.onError('Error: <%= error.message %>')

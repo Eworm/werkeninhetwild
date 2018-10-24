@@ -41,6 +41,7 @@
         text-shadow: rgba(#000, 1) 0 2px 0;
         text-align: center;
         text-decoration: underline;
+        color: white;
 
         @include min-screen($lap) {
             right: $margin-large;
