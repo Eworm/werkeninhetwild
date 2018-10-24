@@ -60,17 +60,7 @@ gulp.task('javascript', function() {
 
     gulp.src([
             'node_modules/blazy/blazy.js',
-            'node_modules/easy-autocomplete/dist/jquery.easy-autocomplete.js',
-            'js-src/modules/template.blazy.js',
-            'js-src/modules/template.autocomplete.js',
-            'js-src/modules/template.googlemaps.js',
-            'js-src/modules/template.mq.js',
-            'js-src/modules/template.mq-palm.js',
-            'js-src/modules/template.mq-lap.js',
-            'js-src/modules/template.mq-desk.js',
-            'js-src/modules/template.mq-wall.js',
-            'js-src/modules/template.mq-cinema.js',
-            'js-src/base/template.init.js'
+            'js-src/base/functions.js'
         ])
         .pipe(plugins.plumber({
             errorHandler: plugins.notify.onError('Error: <%= error.message %>')

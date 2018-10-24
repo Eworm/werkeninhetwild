@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    //
+    var bLazy = new Blazy();
+    
+
     // The map
     if (typeof episode != 'undefined') {
         initialize_single(episode);
