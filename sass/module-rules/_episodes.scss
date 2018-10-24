@@ -40,7 +40,7 @@
         font-weight: normal;
         text-shadow: rgba(#000, 1) 0 2px 0;
         text-align: center;
-        text-decoration: underline;
+        text-decoration: none;
         color: white;
 
         @include min-screen($lap) {
