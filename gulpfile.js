@@ -1,8 +1,6 @@
 var gulp                = require('gulp'),
     plugins             = require('gulp-load-plugins')()
 
-
-
 // Source paths
 var src_paths = {
     css:                'sass/**/*.scss',
@@ -14,8 +12,6 @@ var src_paths = {
     javascript:         'js-src/**/*.*'
 };
 
-
-
 // Destination paths
 var dest_paths = {
     css:                '.',
@@ -23,10 +19,8 @@ var dest_paths = {
     javascript:         'js'
 };
 
-
-
 // CSS using SASS
-gulp.task('css', function() {
+function css(done) {
     gulp.src(src_paths.css)
 
         .pipe(plugins.plumber({
@@ -39,7 +33,6 @@ gulp.task('css', function() {
         }))
 
         .pipe(plugins.autoprefixer({
-            browsers: ['last 2 versions', 'ie 10'],
             cascade: false
         }))
 
@@ -51,12 +44,12 @@ gulp.task('css', function() {
         .pipe(plugins.notify({
             message: 'Css complete!'
         }))
-});
 
-
+    done();
+};
 
 // Javascript
-gulp.task('javascript', function() {
+function javascript(done) {
 
     gulp.src([
             'node_modules/blazy/blazy.js',
@@ -66,7 +59,7 @@ gulp.task('javascript', function() {
             errorHandler: plugins.notify.onError('Error: <%= error.message %>')
         }))
         .pipe(plugins.concat('functions.min.js'))
-        .pipe(plugins.uglify())
+        .pipe(plugins.terser())
         .pipe(gulp.dest(dest_paths.javascript))
 
         .pipe(plugins.notify({
@@ -80,14 +73,16 @@ gulp.task('javascript', function() {
         }))
 
         .pipe(plugins.concat('lab.min.js'))
-        .pipe(plugins.uglify())
+        .pipe(plugins.terser())
         .pipe(gulp.dest(dest_paths.javascript))
 
         .pipe(plugins.livereload())
         .pipe(plugins.notify({
             message: 'Labloader minified complete!'
         }))
-});
+
+    done();
+};
 
 
 
@@ -176,17 +171,14 @@ gulp.task('critical', function() {
         }))
 });
 
+// Watch files
+function watchFiles() {
+    livereload.listen();
+    gulp.watch(src_paths.css, css);
+    gulp.watch(src_paths.javascript, javascript);
+}
 
-
-// Watch
-gulp.task('watch', function(ev) {
-    plugins.livereload.listen();
-    gulp.watch(src_paths.css, ['css']);
-    gulp.watch(src_paths.javascript, ['javascript']);
-    gulp.watch(src_paths.sprite, ['sprite']);
-});
-
-
-
-// Default
-gulp.task('default', ['watch']);
+// Export tasks
+exports.css = css;
+exports.javascript = javascript;
+exports.default = watchFiles;
